@@ -1,0 +1,23 @@
+{
+  "name": "dynoteam",
+  "version": "1.0.0",
+  "description": "This application allows a user to input team-member data, Then generates a dynamic HTML page to allow for easy viewing of the team",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Droessling94/DynoTeam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Droessling94/DynoTeam/issues"
+  },
+  "homepage": "https://github.com/Droessling94/DynoTeam#readme",
+  "dependencies": {
+    "inquirer": "^8.2.2",
+    "jest": "^27.5.1"
+  }
+}
