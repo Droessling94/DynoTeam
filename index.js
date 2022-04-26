@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const Employee = require('./lib/Employee')
 const Manager = require('./lib/Manager');
+const fs = require('fs');
 
 let initialSet = {};
 let nextDest = {};
@@ -221,7 +222,22 @@ function mainMenuOptins() {
 };
 function mapnWrite() {
   for ( let i = 0; i < employeeLibrary.length; i++) {
-    let htmlFormat = `<div class="container py-2">
+    let htmlBeginning = `<!DOCTYPE html>
+    <html lang="en-us">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="./style.css">
+        <title>website</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+    
+    <body>
+        <header>
+            <h1>DynoTeam</h1>
+        </header>
+    `
+    let htmlCardFormat = `<div class="container py-2">
     <div class="row">
         <div class="col">
             <h2 class="font-weight-light">DynoTeam</h2>
@@ -237,21 +253,36 @@ function mapnWrite() {
         </div>
     </div>
     </div>`;
+    let htmlEnd = `    <footer>
+    <p>Thanks for Visiting</p>
+</footer>
+<script src="./assets/script.js"></script>
+</body>
+
+</html>`
+
+let htmlFormat = htmlBeginning + htmlCardFormat;
 
     if (employeeLibrary[i].role == 'Manager') {
       let newManager = new Manager (`${employeeLibrary[i].name}`,`${employeeLibrary[i].id}`,`${employeeLibrary[i].email}`,`${employeeLibrary[i].officeNumber}`)
-      fs.writeFile('index.html', htmlFormat, (err) => { if (err) { console.log(err); } });
+      fs.appendFile('index.html', htmlFormat, (err) => { if (err) { console.log(err); } });
     }
     if (employeeLibrary[i].role == 'Engineer') {
       console.log('mapped  an engineer');
+      let newEngineer = new Engineer (`${employeeLibrary[i].name}`,`${employeeLibrary[i].id}`,`${employeeLibrary[i].email}`,`${employeeLibrary[i].officeNumber}`)
+      fs.appendFile('index.html', htmlCardFormat, (err) => { if (err) { console.log(err); } });
     }
     if (employeeLibrary[i].role == 'Intern') {
       console.log('mapped an intern');
+      let newIntern = new Intern (`${employeeLibrary[i].name}`,`${employeeLibrary[i].id}`,`${employeeLibrary[i].email}`,`${employeeLibrary[i].officeNumber}`)
+      fs.appendFile('index.html', htmlCardFormat, (err) => { if (err) { console.log(err); } });
     }
+    fs.appendFile('index.html', htmlEnd, (err) => { if (err) { console.log(err); } });
     console.log('maps done');
 
   }
 };
+//leaving off above
 
 async function mainMenu() {
 
